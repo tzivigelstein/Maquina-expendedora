@@ -14,14 +14,18 @@ public:
     {
         this->time = time;
         this->delay = delay;
-        Temperature temperature();
+        this->variationRange = 0.1;
+        Temperature temperature(variationRange);
     }
 
     void start()
     {
+        Serial.prinln("Checking temperature");
         if (temperature.isTemperatureArround(temperatureLimit))
         {
-            Serial.print("Temperature OK")
+            Serial.println("Temperature OK");
+            Serial.println("Starting process");
+            
         }
     }
 

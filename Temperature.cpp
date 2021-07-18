@@ -19,8 +19,8 @@ public:
     bool isTemperatureArround(int temperatureLimit)
     {
         int actualTemperature = getTemperature() int temperatureVariation = temperatureLimit * variationRange;
-        int lowestAcceptableTemperature actualTemperature - temperatureVariation;
-        int highestAcceptableTemperature actualTemperature + temperatureVariation;
+        int lowestAcceptableTemperature = temperatureLimit - temperatureVariation;
+        int highestAcceptableTemperature = temperatureLimit + temperatureVariation;
         return actualTemperature > lowestAcceptableTemperature && actualTemperature < highestAcceptableTemperature;
     }
 };
