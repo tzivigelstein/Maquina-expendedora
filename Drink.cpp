@@ -1,6 +1,7 @@
 #include <Arduino.h>
-#include "Component.cpp"
+#include "Temperature.cpp"
 #include "Motor.cpp"
+#include "Component.cpp"
 
 class Drink
 {
@@ -13,15 +14,18 @@ public:
     {
         this->time = time;
         this->delay = delay;
+        Temperature temperature();
     }
 
     void start()
     {
-        if(actualTemperature < temperatureLimit)
+        if (temperature.isTemperatureArround(temperatureLimit))
+        {
+            Serial.print("Temperature OK")
+        }
     }
 
     void stop()
     {
-        
     }
 };

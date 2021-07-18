@@ -6,12 +6,21 @@ private:
     int temperature;
 
 public:
-    Temperature()
+    Temperature(int variationRange)
     {
+        this->variationRange = variationRange;
     }
 
     int getTemperature()
     {
         return analogRead(temperaturePin);
+    }
+
+    bool isTemperatureArround(int temperatureLimit)
+    {
+        int actualTemperature = getTemperature() int temperatureVariation = temperatureLimit * variationRange;
+        int lowestAcceptableTemperature actualTemperature - temperatureVariation;
+        int highestAcceptableTemperature actualTemperature + temperatureVariation;
+        return actualTemperature > lowestAcceptableTemperature && actualTemperature < highestAcceptableTemperature;
     }
 };

@@ -13,12 +13,12 @@ const int motorC = 11;
 
 //Temperature
 const int temperaturePin = A2;
-Temperature temperature();
+const int temperatureLimit = 90;
 
 //Buttons
-const int buttonAPin = 8;
+const int buttonAPin = 10;
 const int buttonBPin = 9;
-const int buttonCPin = 10;
+const int buttonCPin = 8;
 
 Button buttonA(buttonAPin);
 Button buttonB(buttonBPin);
@@ -35,8 +35,6 @@ void loop()
   bool buttonAIsPressed = buttonA.isPressed();
   bool buttonBIsPressed = buttonB.isPressed();
   bool buttonCIsPressed = buttonC.isPressed();
-
-  int actualTemperature = temperature.getTemperature();
 
   const int motorARef = digitalRead(motorA);
   const int motorBRef = digitalRead(motorB);
