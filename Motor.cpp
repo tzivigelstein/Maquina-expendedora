@@ -3,18 +3,21 @@
 class Motor
 {
 private:
+    int motor;
+
 public:
-    Motor()
+    Motor(int motor)
     {
+        this->motor = motor;
     }
 
     void start()
     {
-        digitalWrite(motorA, HIGH);
+        digitalWrite(motor, HIGH);
     }
 
     void stop()
     {
-        digitalWrite(motorA, LOW);
+        digitalWrite(motor, LOW);
     }
-}
+};

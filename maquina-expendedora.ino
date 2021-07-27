@@ -26,6 +26,8 @@ Button buttonC(buttonCPin);
 void setup()
 {
   Serial.begin(9600);
+  lcd.begin(16, 2);
+  lcd.print("Hello world");
 }
 
 void loop()
@@ -41,16 +43,19 @@ void loop()
 
   if (buttonAIsPressed)
   {
+    digitalWrite(motorA, HIGH);
     Drink drinkA(1000, 1000, temperatureLimit);
     drinkA.start();
   }
   else if (buttonBIsPressed)
   {
+    digitalWrite(motorB, HIGH);
     Drink drinkB(1000, 1000, temperatureLimit);
     drinkB.start();
   }
   else if (buttonCIsPressed)
   {
+    digitalWrite(motorC, HIGH);
     Drink drinkC(1000, 1000, temperatureLimit);
     drinkC.start();
   }

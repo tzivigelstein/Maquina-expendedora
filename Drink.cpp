@@ -1,31 +1,32 @@
 #include <Arduino.h>
 #include "Temperature.cpp"
 #include "Motor.cpp"
-#include "Component.cpp"
 
 class Drink
 {
 private:
     int time;
     int delay;
+    int variationRange;
+    int temperatureLimit;
+    Temperature temperature;
 
 public:
-    Drink(int delay, int time)
+    Drink(int delay, int time, int temperatureLimit) : temperature(variationRange)
     {
         this->time = time;
         this->delay = delay;
         this->variationRange = 0.1;
-        Temperature temperature(variationRange);
+        this->temperatureLimit = temperatureLimit;
     }
 
     void start()
     {
-        Serial.prinln("Checking temperature");
+        Serial.println("Checking temperature");
         if (temperature.isTemperatureArround(temperatureLimit))
         {
             Serial.println("Temperature OK");
             Serial.println("Starting process");
-            
         }
     }
 
