@@ -6,7 +6,7 @@ private:
     byte pin;
     byte state;
     byte lastReading;
-    unsigned long lastDebounceTime = 0;
+    unsigned long lastDebounceTime = 15;
     unsigned long debounceDelay = 50;
 
 public:
@@ -31,12 +31,10 @@ public:
         {
             lastDebounceTime = millis();
         }
-
         if (millis() - lastDebounceTime > debounceDelay)
         {
             state = newReading;
         }
-
         lastReading = newReading;
     }
 

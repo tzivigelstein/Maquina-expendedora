@@ -1,10 +1,6 @@
 #include "Button.cpp"
 #include "Drink.cpp"
-#include "Component.cpp"
-#include <LiquidCrystal.h>
-
-//Display
-LiquidCrystal lcd(7, 6, 5, 4, 3, 2);
+#include "Display.h"
 
 //Motors
 const int motorA = 13;
@@ -23,40 +19,50 @@ Button buttonA(buttonAPin);
 Button buttonB(buttonBPin);
 Button buttonC(buttonCPin);
 
+Display display;
+
 void setup()
 {
   Serial.begin(9600);
-  lcd.begin(16, 2);
-  lcd.print("Hello world");
+  display.init();
 }
 
 void loop()
 {
-  //Get buttons actual state
-  bool buttonAIsPressed = buttonA.isPressed();
-  bool buttonBIsPressed = buttonB.isPressed();
-  bool buttonCIsPressed = buttonC.isPressed();
+  if (buttonA.isPressed())
+  {
+    //Black coffee
+    static const int coffeeActive = 4000;
+    static const int milkActive = 4000;
+    static const int waterActive = 15000;
 
-  const int motorARef = digitalRead(motorA);
-  const int motorBRef = digitalRead(motorB);
-  const int motorCRef = digitalRead(motorC);
+    Drink blackCoffee(temperatureLimit, coffeeActive, milkActive, waterActive);
+    blackCoffee.start();
+  }
 
-  if (buttonAIsPressed)
+  if (buttonB.isPressed())
   {
-    digitalWrite(motorA, HIGH);
-    Drink drinkA(1000, 1000, temperatureLimit);
-    drinkA.start();
+    //Latte
+    static const int coffeeActive = 4000;
+    static const int milkActive = 4000;
+    static const int waterActive = 15000;
+
+    Drink latte(temperatureLimit, coffeeActive, milkActive, waterActive);
+    latte.start();
   }
-  else if (buttonBIsPressed)
+
+  if (buttonC.isPressed())
   {
-    digitalWrite(motorB, HIGH);
-    Drink drinkB(1000, 1000, temperatureLimit);
-    drinkB.start();
-  }
-  else if (buttonCIsPressed)
-  {
-    digitalWrite(motorC, HIGH);
-    Drink drinkC(1000, 1000, temperatureLimit);
-    drinkC.start();
+    //White coffee
+    //static const int coffeeActive = 4000;
+    //static const int milkActive = 4000;
+    //static const int waterActive = 6000;
+
+    static const int coffeeActive = 1000;
+    static const int milkActive = 1000;
+    static const int waterActive = 1000;
+
+    Drink whiteCoffee(temperatureLimit, coffeeActive, milkActive, waterActive);
+    whiteCoffee.start();
   }
 }

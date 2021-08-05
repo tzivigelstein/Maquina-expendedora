@@ -9,11 +9,15 @@ public:
     Motor(int motor)
     {
         this->motor = motor;
+        pinMode(motor, OUTPUT);
     }
 
-    void start()
+    void start(int activeTime)
     {
         digitalWrite(motor, HIGH);
+        delay(activeTime);
+        Serial.println(activeTime);
+        stop();
     }
 
     void stop()

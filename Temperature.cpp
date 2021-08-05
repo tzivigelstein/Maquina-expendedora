@@ -3,18 +3,20 @@
 class Temperature
 {
 private:
-    int variationRange;
+    float variationRange;
     const int temperaturePin = A2;
 
 public:
-    Temperature(int variationRange)
+    Temperature(float variationRange)
     {
         this->variationRange = variationRange;
     }
 
     int getTemperature()
     {
-        return analogRead(temperaturePin);
+        //return analogRead(temperaturePin); Uncomment when temperature sensor is plugged.
+        //Maybe need to map values.
+        return 90;
     }
 
     bool isTemperatureArround(int temperatureLimit)
