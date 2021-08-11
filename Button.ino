@@ -1,16 +1,15 @@
-#include <Arduino.h>
 
 class Button
 {
 private:
-    byte pin;
-    byte state;
-    byte lastReading;
-    unsigned long lastDebounceTime = 15;
+    int pin;
+    int state;
+    int lastReading;
+    unsigned long lastDebounceTime = 0;
     unsigned long debounceDelay = 50;
 
 public:
-    Button(byte pin)
+    Button(int pin)
     {
         this->pin = pin;
         lastReading = LOW;
@@ -25,7 +24,7 @@ public:
 
     void update()
     {
-        byte newReading = digitalRead(pin);
+        int newReading = digitalRead(pin);
 
         if (newReading != lastReading)
         {

@@ -1,11 +1,14 @@
-#include "Button.cpp"
 #include "Drink.cpp"
 #include "Display.h"
 
+//Custom machine variables
+const int smallCupTime = 15000;
+int cupTime = smallCupTime;
+
 //Motors
-const int motorA = 13;
-const int motorB = 12;
-const int motorC = 11;
+const int motorWatter = 13;
+const int motorCoffe = 12;
+const int motorMilk = 11;
 
 //Temperature
 const int temperatureLimit = 90;
@@ -25,6 +28,10 @@ void setup()
 {
   Serial.begin(9600);
   display.init();
+
+  for (int i = 0; i < 14; i++) {
+    pinMode(i, OUTPUT);
+  }
 }
 
 void loop()
@@ -32,37 +39,45 @@ void loop()
   if (buttonA.isPressed())
   {
     //Black coffee
-    static const int coffeeActive = 4000;
-    static const int milkActive = 4000;
-    static const int waterActive = 15000;
 
-    Drink blackCoffee(temperatureLimit, coffeeActive, milkActive, waterActive);
-    blackCoffee.start();
+    digitalWrite(motorWatter, HIGH);
+    delay(1000);
+    digitalWrite(motorCoffe, HIGH);
+    delay(4000);
+    digitalWrite(motorCoffe, LOW);
+    delay(10000);
+    digitalWrite(motorWatter, LOW);
   }
 
   if (buttonB.isPressed())
   {
     //Latte
-    static const int coffeeActive = 4000;
-    static const int milkActive = 4000;
-    static const int waterActive = 15000;
 
-    Drink latte(temperatureLimit, coffeeActive, milkActive, waterActive);
-    latte.start();
+    digitalWrite(motorWatter, HIGH);
+    delay(1000);
+    digitalWrite(motorCoffe, HIGH);
+    delay(4000);
+    digitalWrite(motorCoffe, LOW);
+    digitalWrite(motorMilk, HIGH);
+    delay(8000);
+    digitalWrite(motorMilk, LOW);
+    delay(2000);
+    digitalWrite(motorWatter, LOW);
   }
 
   if (buttonC.isPressed())
   {
     //White coffee
-    //static const int coffeeActive = 4000;
-    //static const int milkActive = 4000;
-    //static const int waterActive = 6000;
 
-    static const int coffeeActive = 1000;
-    static const int milkActive = 1000;
-    static const int waterActive = 1000;
-
-    Drink whiteCoffee(temperatureLimit, coffeeActive, milkActive, waterActive);
-    whiteCoffee.start();
+    digitalWrite(motorWatter, HIGH);
+    delay(1000);
+    digitalWrite(motorCoffe, HIGH);
+    delay(4000);
+    digitalWrite(motorCoffe, LOW);
+    digitalWrite(motorMilk, HIGH);
+    delay(4000);
+    digitalWrite(motorMilk, LOW);
+    delay(9500);
+    digitalWrite(motorWatter, LOW);
   }
 }
