@@ -22,7 +22,7 @@ void Display::print(String firstMessage = "", String secondMessage = "")
   {
     const int firstMessageLenght = firstMessage.length();
     const int cursorCenter = (16 - firstMessageLenght) / 2;
-    
+
     lcd.setCursor(cursorCenter, 0);
     lcd.print(firstMessage);
   }
@@ -31,7 +31,7 @@ void Display::print(String firstMessage = "", String secondMessage = "")
   {
     const int secondMessageLenght = secondMessage.length();
     const int cursorCenter = (16 - secondMessageLenght) / 2;
-    
+
     lcd.setCursor(cursorCenter, 1);
     lcd.print(secondMessage);
   }
