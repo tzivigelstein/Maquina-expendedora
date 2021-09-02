@@ -2,7 +2,7 @@
 #include "Coffees.h"
 
 //Temperature
-int temperatureLimit = 90; // 82 minimo && 90 max
+int temperatureLimit = 90; // 82 min && 90 max
 int actualTemperature;
 
 //Buttons
