@@ -4,10 +4,9 @@
 
 class Display
 {
-private:
-public:
+  private:
+  public:
     Display();
-
     void init();
     void print(String firstMessage = "", String secondMessage = "");
     void clear();

@@ -1,8 +1,9 @@
+#include "Temperature.h"
 #include "Display.h"
 #include "Coffees.h"
 
 //Temperature
-int temperatureLimit = 90; // 82 min && 90 max
+int temperatureLimit = 90;
 int actualTemperature;
 
 //Buttons
@@ -12,13 +13,11 @@ const int lattePin = A3;
 const int whiteCoffeePin = A2;
 const int cappuccinoPin = A1;
 
-Display display = Display::Display();
-
-float variationRange = 0.1;
-Temperature temperature(variationRange);
+Display display;
+Temperature temperature;
 
 int lastReading = 0;
-int onTime = 0;
+unsigned long onTime = 0;
 int hold = 0;
 int holdTime = 1000;
 int bounceTime = 50;
@@ -39,6 +38,7 @@ int cupTime = sizesInt[0];
 
 void setup()
 {
+  Serial.begin(9600);
   display.init();
 
   for (int i = 0; i < 14; i++)
